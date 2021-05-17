@@ -1,0 +1,38 @@
+.header{
+    position: fixed!important;
+    width: 100%!important;
+    background: white!important;
+    height: 55px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.header>div:nth-child(1)>img{
+    height:38px;
+    width: auto;
+}
+.header>div{
+    flex-basis: 50%;
+}
+.presentation{
+    height: 75vh;
+    background-color: #23910b;
+}
+.presentation>div{
+    background-image: url('../images/printer.png');
+    background-size: 30% 85%;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.flex{
+    display: flex!important;
+    flex-direction: column!important;
+}
+.fonctions{
+    height: 60vh;
+}
+.cardy{
+    border: 1px solid lightgray;
+    border-radius: 6px;
+}
