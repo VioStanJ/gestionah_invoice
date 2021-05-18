@@ -106,5 +106,33 @@
                 </div>
             </div>
         </section>
+
+        <section class="pricing mb-5">
+            <div class="container">
+                <div>
+                    <br><br>
+                    <h1>Pricing</h1>
+                    <br>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <div class="card-pricing">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <div class="card-pricing">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <div class="card-pricing">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </body>
 </html>
