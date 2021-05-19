@@ -31,7 +31,7 @@
                 <img class="logo" src="{{asset('images/gestionah.png')}}" alt="">
             </div>
 
-            <div>
+            <div class="w-100">
                 @yield('content')
             </div>
         </div>
