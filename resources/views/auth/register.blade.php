@@ -64,13 +64,13 @@ Register
                                     <div class="col-md-12">
                                         <select class="form-control" name="country" required >
                                             <option value="">Select your country</option>
-                                            {{-- @foreach($countries as $host)
+                                            @foreach($countries as $host)
                                                 @if (old('country') == $host->id)
                                                     <option value="{{ $host->id }}" selected>{{ $host->name}}</option>
                                                 @else
                                                     <option value="{{ $host->id }}">{{ $host->name}}</option>
                                                 @endif
-                                            @endforeach --}}
+                                            @endforeach
                                         </select>
                                         @error('country')
                                             <span class="invalid-feedback" role="alert">
@@ -98,25 +98,6 @@ Register
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-lg-12">
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <label for="description" class="col-form-label text-md-right">Description *</label>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <textarea id="description" type="text" rows="4" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autofocus></textarea>
-
-                                        @error('description')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
 
                         <p class="mb-1 font-weight-bold tiblue mt-2">Owner</p>
@@ -185,7 +166,7 @@ Register
                                     </div>
 
                                     <div class="col-md-12">
-                                        <input id="password" type="text" class="form-control" name="password" required autofocus>
+                                        <input id="password" type="password" class="form-control" name="password" required autofocus>
                                     </div>
                                 </div>
                             </div>
@@ -197,7 +178,7 @@ Register
                                     </div>
 
                                     <div class="col-md-12">
-                                        <input id="password_confirmation" type="text" class="form-control" name="password_confirmation" required autofocus>
+                                        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required autofocus>
                                     </div>
                                 </div>
                             </div>
