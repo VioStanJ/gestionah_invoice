@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>GestionaH - Login</title>
+    <title>GestionaH - @yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div id="main-login">
+    <div id="main-login" class="overflow-hidden">
 
         <div id="login-content">
             <img src="{{asset('images/invoice.png')}}" alt="Invoice Image" srcset="">
@@ -31,7 +31,7 @@
                 <img class="logo" src="{{asset('images/gestionah.png')}}" alt="">
             </div>
 
-            <div class="w-100">
+            <div class="w-100 overflow-auto">
                 @yield('content')
             </div>
         </div>
