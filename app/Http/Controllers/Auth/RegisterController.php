@@ -5,39 +5,29 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\UserAdress;
 use App\Models\Country;
+use App\Models\Company;
+use App\Models\CompanyAdress;
+use App\Models\UserCompany;
+use App\Models\CompanySetting;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use DB;
 
 class RegisterController extends Controller
 {
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         // return Validator::make($data, [
@@ -55,12 +45,70 @@ class RegisterController extends Controller
      */
     protected function create(Request $request)
     {
-        dd($request->all());
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        // ]);
+        $request->validate([
+            'company_name'=>'required',
+            'company_email'=>'required',
+            'country'=>'required|exists:countries,id',
+            'name'=>'required',
+            'phone'=>'',
+            'city'=>'',
+            'email'=>'required|unique:users,email',
+            'password'=>'required|confirmed',
+        ]);
+
+        DB::beginTransaction();
+
+        $user = User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'password'=>\bcrypt($request->password),
+        ]);
+
+        if(!$user){
+            DB::rollback();
+            return \redirect()->back()->withErrors(['Error on Save User !']);
+        }
+
+        $company = Company::create([
+            'name'=>$request->company_name,
+            'email'=>$request->company_email,
+            'description'=>$request->company_name,
+            'created_by'=>$user->id,
+        ]);
+
+        if(!$company){
+            DB::rollback();
+            return \redirect()->back()->withErrors(['Error on Save Company !']);
+        }
+
+        CompanyAdress::create([
+            'company_id'=>$company->id,
+            'country_id'=>$request->country,
+            'city'=>$request->city,
+        ]);
+
+        UserAdress::create([
+            'user_id'=>$user->id,
+            'country_id'=>$request->country,
+            'city'=>$request->city,
+            'adress'=>'',
+        ]);
+
+        $valid = UserCompany::create([
+            'user_id'=>$user->id,
+            'company_id'=>$company->id,
+            'type_code'=>'OWN',
+        ]);
+
+        if(!$valid){
+            DB::rollback();
+            return \redirect()->back()->withErrors(['Error on Save !']);
+        }
+
+        DB::commit();
+
+        return redirect('/verify/email?email='.$user->email);
     }
 
     public function show()

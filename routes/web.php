@@ -26,3 +26,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Auth::routes();
 Route::get('/register',[App\Http\Controllers\Auth\RegisterController::class,'show'])->name('register');
 Route::post('/register',[App\Http\Controllers\Auth\RegisterController::class,'create']);
+
+Route::get('/verify/email',[App\Http\Controllers\VerifyAuthController::class,'verify']);
+Route::post('/verify/email',[App\Http\Controllers\VerifyAuthController::class,'resend'])->name('verification.resend');
