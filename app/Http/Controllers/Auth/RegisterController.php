@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Mail\VerifyEmail;
 use Carbon\Carbon;
+use App\Models\UserActivation;
 
 class RegisterController extends Controller
 {

@@ -1,5 +1,8 @@
 @extends('layouts.auth')
 
+@section('title')
+Verify your E-mail
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -17,8 +20,9 @@
                     {{ __('Before proceeding, please check your email for a verification link.') }}
                     {{ __('If you did not receive the email') }},
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                        <input type="hidden" name="email" value="{{$email}}">
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline mt-3" style="text-decoration: none;">{{ __('click here to request another') }}</button>.
                     </form>
                 </div>
             </div>
