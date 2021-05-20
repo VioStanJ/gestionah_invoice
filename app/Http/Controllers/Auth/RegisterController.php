@@ -111,12 +111,13 @@ class RegisterController extends Controller
 
         $code = $user->id.'-'.time();
         try {
-            \Mail::to($user->email)->send(new VerifyEmail($user,$code));
             UserActivation::create([
                 'user_id'=>$user->id,
                 'code'=>$code,
-                'end_at'=>Carbon::now()->add('day',1);
+                'end_at'=>Carbon::now()->add('day',1)
             ]);
+
+            \Mail::to($user->email)->send(new VerifyEmail($user,$code));
         } catch (\Exception $e) {
         }
 
