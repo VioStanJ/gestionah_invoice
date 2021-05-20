@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use DB;
+use App\Mail\VerifyEmail;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -104,6 +106,17 @@ class RegisterController extends Controller
         if(!$valid){
             DB::rollback();
             return \redirect()->back()->withErrors(['Error on Save !']);
+        }
+
+        $code = $user->id.'-'.time();
+        try {
+            \Mail::to($user->email)->send(new VerifyEmail($user,$code));
+            UserActivation::create([
+                'user_id'=>$user->id,
+                'code'=>$code,
+                'end_at'=>Carbon::now()->add('day',1);
+            ]);
+        } catch (\Exception $e) {
         }
 
         DB::commit();
