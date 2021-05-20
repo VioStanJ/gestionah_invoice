@@ -29,3 +29,4 @@ Route::post('/register',[App\Http\Controllers\Auth\RegisterController::class,'cr
 
 Route::get('/verify/email',[App\Http\Controllers\VerifyAuthController::class,'verify']);
 Route::post('/verify/email',[App\Http\Controllers\VerifyAuthController::class,'resend'])->name('verification.resend');
+Route::get('/verify/your/email/{code}',[App\Http\Controllers\VerifyAuthController::class,'verifyCode']);

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Mail\VerifyEmail;
 use App\Models\UserActivation;
 use Carbon\Carbon;
+use App\Models\User;
 
 class VerifyAuthController extends Controller
 {
@@ -29,9 +30,8 @@ class VerifyAuthController extends Controller
             return redirect()->back()->withErrors(['E-mail not found :/ !']);
         }
 
-        // dd($user);
-
         $code = $user->id.'-'.time();
+
         try {
             UserActivation::create([
                 'user_id'=>$user->id,
@@ -41,9 +41,24 @@ class VerifyAuthController extends Controller
 
             \Mail::to($user->email)->send(new VerifyEmail($user,$code));
 
-        } catch (\Exception $e) {
-        }
+        } catch (\Exception $e) {}
 
         return redirect('/verify/email?email='.$user->email);
+    }
+
+    public function verifyCode(Request $request,$code)
+    {
+        $usc = UserActivation::where('code','=',$code)->get()->last();
+
+        $user = User::find($usc->user_id);
+
+        if(!isset($usc) || !isset($user)){
+            return view('auth.activation');
+        }
+
+        $user->email_verified_at = Carbon\Carbon::now();
+        $user->save();
+
+        return redirect('/login');
     }
 }
