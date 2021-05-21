@@ -1,9 +1,7 @@
 @php
     $users=\Auth::user();
-    $profile=asset(Storage::url('uploads/avatar/'));
-    // $currantLang = $users->currentLanguage();
-    // $languages=Utility::languages();
 @endphp
+
 <nav class="navbar navbar-main navbar-expand-lg navbar-border n-top-header" id="navbar-main">
     <div class="container-fluid">
         <button class="navbar-toggler"
@@ -38,7 +36,7 @@
                         aria-expanded="false"
                     >
                     <span class="avatar avatar-sm rounded-circle">
-                      <img src="{{(!empty($users->avatar)? $profile.'/'.$users->avatar : $profile.'/avatar.png')}}"/>
+                      <img src="{{asset($users->image)}}"/>
                     </span>
                     </a>
 
@@ -76,7 +74,7 @@
             </ul>
         </div>
 
-        <div class="collapse navbar-collapse navbar-collapse-fade" id="navbar-main-collapse">
+        <div class="collapse navbar-collapse navbar-collapse-fade" style="height: 30px;">
             <ul class="navbar-nav align-items-center d-none d-lg-flex">
                 <li class="nav-item">
                     <a
@@ -96,7 +94,7 @@
                     >
                         <div class="media media-pill align-items-center">
                       <span class="avatar rounded-circle">
-                        <img src="{{(!empty($users->avatar)? $profile.'/'.$users->avatar : $profile.'/avatar.png')}}"/>
+                        <img src="{{asset($users->image)}}"/>
                       </span>
                             <div class="ml-2 d-none d-lg-block">
                                 <span class="mb-0 text-sm font-weight-bold">{{\Auth::user()->name}}</span>

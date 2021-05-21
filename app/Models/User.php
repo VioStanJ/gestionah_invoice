@@ -45,6 +45,16 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\UserAdress', 'user_id', 'id');
     }
 
+    /**
+     * Get the userCompany a the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function userCompany()
+    {
+        return $this->hasOne(UserCompany::class, 'user_id', 'id');
+    }
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()

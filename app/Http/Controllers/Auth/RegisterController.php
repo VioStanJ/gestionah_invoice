@@ -78,6 +78,7 @@ class RegisterController extends Controller
             'email'=>$request->company_email,
             'description'=>$request->company_name,
             'created_by'=>$user->id,
+            'image'=>''
         ]);
 
         if(!$company){

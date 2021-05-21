@@ -1,14 +1,8 @@
-@php
-    $logo=asset(Storage::url('uploads/logo/'));
-    // $company_logo=Utility::getValByName('company_logo');
-    // $company_small_logo=Utility::getValByName('company_small_logo');
-@endphp
-
 <div class="sidenav custom-sidenav" id="sidenav-main">
     <!-- Sidenav header -->
     <div class="sidenav-header d-flex align-items-center">
         <a class="navbar-brand" href="">
-            <img src="{{$logo.'/'.(isset($company_logo) && !empty($company_logo)?$company_logo:'/assets/landing_logo.png')}}" class="navbar-brand-img"/>
+            <img src="{{!empty($company->image)?asset($logo):asset($company->image)}}" class="navbar-brand-img"/>
         </a>
         <div class="ml-auto">
             <div class="sidenav-toggler sidenav-toggler-dark d-md-none" data-action="sidenav-unpin" data-target="#sidenav-main">
