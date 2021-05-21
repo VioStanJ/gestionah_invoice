@@ -29,55 +29,11 @@
                     </a>
                 </li>
 
-                @can('manage customer proposal')
-                    <li class="nav-item">
-                        {{-- <a href="{{route('customer.proposal')}}" class="nav-link {{ (Request::route()->getName() == 'customer.proposal' || Request::route()->getName() == 'customer.proposal.show') ? ' active' : '' }}">
-                            <i class="fas fa-file"></i>{{__('Proposal')}}
-                        </a> --}}
-                    </li>
-                @endcan
-                @can('manage customer invoice')
-                    <li class="nav-item">
-                        {{-- <a href="{{route('customer.invoice')}}" class="nav-link {{ (Request::route()->getName() == 'customer.invoice' || Request::route()->getName() == 'customer.invoice.show') ? ' active' : '' }} ">
-                            <i class="fas fa-file"></i>{{__('Invoice')}}
-                        </a> --}}
-                    </li>
-                @endcan
-                @can('manage customer payment')
-                    <li class="nav-item">
-                        {{-- <a href="{{route('customer.payment')}}" class="nav-link {{ (Request::route()->getName() == 'customer.payment') ? ' active' : '' }} ">
-                            <i class="fas fa-money-bill-alt"></i>{{__('Payment')}}
-                        </a> --}}
-                    </li>
-                @endcan
-                @can('manage customer transaction')
-                    <li class="nav-item">
-                        {{-- <a href="{{route('customer.transaction')}}" class="nav-link {{ (Request::route()->getName() == 'customer.transaction') ? ' active' : '' }}">
-                            <i class="fas fa-history"></i>{{__('Transaction')}}
-                        </a> --}}
-                    </li>
-                @endcan
-                @can('manage vender bill')
-                    <li class="nav-item">
-                        {{-- <a href="{{route('vender.bill')}}" class="nav-link {{ (Request::route()->getName() == 'vender.bill' || Request::route()->getName() == 'vender.bill.show') ? ' active' : '' }} ">
-                            <i class="fas fa-file"></i>{{__('Bill')}}
-                        </a> --}}
-                    </li>
-                @endcan
-                @can('manage vender payment')
-                    <li class="nav-item">
-                        {{-- <a href="{{route('vender.payment')}}" class="nav-link {{ (Request::route()->getName() == 'vender.payment') ? ' active' : '' }} ">
-                            <i class="fas fa-money-bill-alt"></i>{{__('Payment')}}
-                        </a> --}}
-                    </li>
-                @endcan
-                @can('manage vender transaction')
-                    <li class="nav-item">
-                        {{-- <a href="{{route('vender.transaction')}}" class="nav-link {{ (Request::route()->getName() == 'vender.transaction') ? ' active' : '' }}">
-                            <i class="fas fa-history"></i>{{__('Transaction')}}
-                        </a> --}}
-                    </li>
-                @endcan
+                <li class="nav-item">
+                    <a href="" class="nav-link {{ (Request::segment(1) == 'productservice')?'active':''}}">
+                        <i class="fas fa-list-ul"></i>{{__('Category')}}
+                    </a>
+                </li>
 
             </ul>
         </div>
