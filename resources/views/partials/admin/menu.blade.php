@@ -30,7 +30,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link {{ (Request::segment(1) == 'productservice')?'active':''}}">
+                    <a href="" class="nav-link {{ (Request::segment(1) == 'category')?'active':''}}">
                         <i class="fas fa-list-ul"></i>{{__('Category')}}
                     </a>
                 </li>
