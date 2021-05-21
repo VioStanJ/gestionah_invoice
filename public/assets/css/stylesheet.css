@@ -5,7 +5,9 @@
     font-weight: normal;
     font-style: normal;
 }
-
+.pointer{
+    cursor: pointer!important;
+}
 @font-face {
     font-family: 'Montserrat-SemiBold';
     src: url('../fonts/Montserrat-SemiBold.eot');
@@ -952,7 +954,6 @@ input:focus {
 }
 
 .select2-container--default .select2-results__option[aria-selected="true"], .select2-container--default .select2-results__option--highlighted[aria-selected] {
-    /*color: #a3afbb !important;*/
     color: #255ef7 !important;
 }
 
@@ -1047,7 +1048,7 @@ a.bg-red {
     display: inline-block;
     height: 42px;
     clear: both;
-    float: left;
+    /* float: left; */
 }
 
 .month-btn input {
@@ -1081,7 +1082,7 @@ a.bg-red {
     color: #fff;
     font-size: 12px;
     font-weight: 600;
-    float: left;
+    /* float: left; */
     width: 50%;
     text-align: center;
 }
@@ -1092,7 +1093,7 @@ a.bg-red {
     color: #0f5ef7;
     font-size: 12px;
     font-weight: 600;
-    float: left;
+    /* float: left; */
     width: 50%;
     text-align: center;
 }
@@ -2441,7 +2442,7 @@ input[type="file"] {
 .choose-file label {
     display: inline-block;
     position: relative;
-    float: left;
+    /* float: left; */
     min-width: 140px;
 }
 
@@ -3043,9 +3044,6 @@ form .row .select-box {
         margin-top: 20px;
     }
 
-    .page-title {
-    }
-
     .btn-group .btn-neutral {
         font-size: 10px;
         padding: 7px 8px;
@@ -3573,9 +3571,6 @@ form .row .select-box {
         width: 100%;
     }
 
-    .page-title {
-    }
-
     .m-view .btn-box select.select-box {
         width: 100%;
     }
@@ -3616,10 +3611,6 @@ form .row .select-box {
         float: right;
         margin-top: 5px;
         width: 100%;
-    }
-
-    .all-button-box a.btn-icon-only.width-auto {
-        /*min-width: 47%;*/
     }
 
     .all-button-box a.bg-yellow {

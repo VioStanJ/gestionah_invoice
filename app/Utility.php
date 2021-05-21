@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class Utility extends Model
 {
@@ -24,5 +25,13 @@ class Utility extends Model
         $arrLang = array_filter($arrLang);
 
         return $arrLang;
+    }
+
+    public function getCompany(User $user)
+    {
+        if(!isset($user->userCompany)){
+            return redirect()->back()->withErrors(['Company not found !']);
+        }
+        return $user->userCompany->company;
     }
 }

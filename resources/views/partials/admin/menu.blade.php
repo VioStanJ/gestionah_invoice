@@ -1,7 +1,7 @@
 <div class="sidenav custom-sidenav" id="sidenav-main">
     <!-- Sidenav header -->
     <div class="sidenav-header d-flex align-items-center">
-        <a class="navbar-brand" href="">
+        <a class="navbar-brand mb-3" href="/home">
             <img src="{{!empty($company->image)?asset($logo):asset($company->image)}}" class="navbar-brand-img"/>
         </a>
         <div class="ml-auto">
@@ -18,20 +18,17 @@
         <div class="div-mega">
             <ul class="navbar-nav navbar-nav-docs">
                 <li class="nav-item">
-                    {{-- @if(\Auth::guard('customer')->check())
-                        <a href="{{route('customer.dashboard')}}" class="nav-link {{ (Request::route()->getName() == 'customer.dashboard') ? ' active' : '' }}">
-                            <i class="fas fa-fire"></i>{{__('Dashboard')}}
-                        </a>
-                    @elseif(\Auth::guard('vender')->check())
-                        <a href="{{route('vender.dashboard')}}" class="nav-link {{ (Request::route()->getName() == 'vender.dashboard') ? ' active' : '' }}">
-                            <i class="fas fa-fire"></i>{{__('Dashboard')}}
-                        </a>
-                    @else
-                        <a href="{{route('dashboard')}}" class="nav-link {{ (Request::route()->getName() == 'dashboard') ? ' active' : '' }}">
-                            <i class="fas fa-fire"></i>{{__('Dashboard')}}
-                        </a>
-                    @endif --}}
+                    <a href="" class="nav-link {{ (Request::route()->getName() == 'home') ? ' active' : '' }}">
+                        <i class="fas fa-fire"></i>{{__('Dashboard')}}
+                    </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="" class="nav-link {{ (Request::segment(1) == 'productservice')?'active':''}}">
+                        <i class="fas fa-shopping-cart"></i>{{__('Product & Service')}}
+                    </a>
+                </li>
+
                 @can('manage customer proposal')
                     <li class="nav-item">
                         {{-- <a href="{{route('customer.proposal')}}" class="nav-link {{ (Request::route()->getName() == 'customer.proposal' || Request::route()->getName() == 'customer.proposal.show') ? ' active' : '' }}">

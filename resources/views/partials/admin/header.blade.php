@@ -103,8 +103,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
                         <h6 class="dropdown-header px-0">{{__('Hi')}}, {{\Auth::user()->name}}</h6>
-                        <a class="dropdown-item has-icon">
-                            <i class="fa fa-user"></i> <span>{{__('My Profile')}}</span>
+                        <a class="dropdown-item has-icon pointer">
+                            <i class="fas fa-id-badge"></i> <span>{{__('My Profile')}}</span>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
