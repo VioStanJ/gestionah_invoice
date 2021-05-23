@@ -27,7 +27,7 @@ class Utility extends Model
         return $arrLang;
     }
 
-    public function getCompany(User $user)
+    public static function getCompany(User $user)
     {
         if(!isset($user->userCompany)){
             return redirect()->back()->withErrors(['Company not found !']);

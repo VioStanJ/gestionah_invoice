@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            {{-- @yield('content') --}}
+            @yield('content')
         </div>
     </div>
 </div>

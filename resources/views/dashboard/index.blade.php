@@ -4,8 +4,6 @@
     {{__('Dashboard')}}
 @endsection
 
-{{--{{dd($incomeCategoryColor)}}--}}
-
 @push('script-page')
     <script>
             @if(\Auth::user()->can('show dashboard'))
