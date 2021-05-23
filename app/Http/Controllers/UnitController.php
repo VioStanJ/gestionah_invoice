@@ -38,4 +38,11 @@ class UnitController extends Controller
 
         return redirect('/unit')->with(['Unit Saved :) !']);
     }
+
+    public function edit($id)
+    {
+        $unit = ProductUnit::find($id);
+
+        return view('unit.edit',compact('unit'));
+    }
 }
