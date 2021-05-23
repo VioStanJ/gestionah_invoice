@@ -34,17 +34,15 @@
                                     <td class="Action">
                                         <span>
                                         {{-- @can('edit constant category') --}}
-                                                <a href="#" class="edit-icon" data-url="{{ route('unit.edit',$unit->id) }}" data-ajax-popup="true" data-title="{{__('Edit Unit')}}" data-toggle="tooltip" data-original-title="{{__('Edit')}}">
+                                            <a href="#" class="edit-icon" data-url="{{ route('unit.edit',$unit->id) }}" data-ajax-popup="true" data-title="{{__('Edit Unit')}}" data-toggle="tooltip" data-original-title="{{__('Edit')}}">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                             {{-- @endcan --}}
-                                            @can('delete constant category')
-                                                <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{$unit->id}}').submit();">
+                                            <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{$unit->id}}').submit();">
                                                 <i class="fas fa-trash"></i>
                                             </a>
-                                                {!! Form::open(['method' => 'DELETE', 'route' => ['product-unit.destroy', $unit->id],'id'=>'delete-form-'.$unit->id]) !!}
-                                                {!! Form::close() !!}
-                                            @endcan
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['unit.destroy', $unit->id],'id'=>'delete-form-'.$unit->id]) !!}
+                                            {!! Form::close() !!}
                                         </span>
                                     </td>
                                 </tr>

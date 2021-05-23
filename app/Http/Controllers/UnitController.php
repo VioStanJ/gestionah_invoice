@@ -57,4 +57,17 @@ class UnitController extends Controller
 
         return redirect()->back()->withInput(['Unit Updated :) ']);
     }
+
+    public function destroy($id)
+    {
+        $unit = ProductUnit::find($id);
+
+        $unit->status = 0;
+
+        if(!$unit->save()){
+            return redirect()->back()->withErrors(['Deleted failed :/ !']);
+        }
+
+        return redirect()->back()->withInput(['Unit Deleted :) ']);
+    }
 }
