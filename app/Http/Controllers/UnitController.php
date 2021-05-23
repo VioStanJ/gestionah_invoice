@@ -45,4 +45,16 @@ class UnitController extends Controller
 
         return view('unit.edit',compact('unit'));
     }
+
+    public function update(Request $request,$id)
+    {
+        $unit = ProductUnit::find($id);
+
+        $unit->name = $request->name;
+        if(!$unit->save()){
+            return redirect()->back()->withErrors(['Update failed :/ !']);
+        }
+
+        return redirect()->back()->withInput(['Unit Updated :) ']);
+    }
 }
