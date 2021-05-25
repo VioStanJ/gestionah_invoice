@@ -51,7 +51,7 @@
                 {{ Form::label('price', __('Purchase Price'),['class'=>'form-control-label']) }}
                 <div class="form-icon-user">
                     <span><i class="fas fa-money-bill-alt"></i></span>
-                    {{ Form::number('price', '', array('class' => 'form-control','required'=>'required','step'=>'0.01')) }}
+                    {{ Form::number('price', '', array('class' => 'form-control','step'=>'0.01')) }}
                 </div>
             </div>
         </div>

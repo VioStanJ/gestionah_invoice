@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('page-title')
-    {{__('Unit')}}
+{{__('Manage Product & Services')}}
 @endsection
 
 @section('title')
-{{__('Unit')}}
+{{__('Manage Product & Services')}}
 @endsection
 
 @section('action-button')

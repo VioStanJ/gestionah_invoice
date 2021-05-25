@@ -14,7 +14,6 @@
 .ti-imaj{
     width: 40px;
     height: 40px;
-    background: lightgray;
     border-radius: 5px;
     object-fit: cover;
 }

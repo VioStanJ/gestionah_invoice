@@ -101,4 +101,75 @@ class ProductController extends Controller
 
         return view('product.edit',compact('product','units','categories'));
     }
+
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            'name'=>'required',
+            'ttc'=>'required',
+            'price'=>'required',
+            'unit_id'=>'required',
+            'category_id'=>'required',
+            'type'=>'required'
+        ]);
+
+        $company = Utility::getCompany($request->user());
+
+        $category = category::where('code','=',$request->category_id)->get()->first();
+
+        $unit = ProductUnit::where('code','=',$request->unit_id)->get()->first();
+
+        $article = Article::find($id);
+
+        $article->code = 'A-'.$company->company.time();
+        $article->sku = $request->sku ;
+        $article->name = $request->name ;
+        $article->price = $request->price ;
+        $article->ttc = $request->ttc ;
+        $article->is_service = $request->type;
+        $article->unit_code = $unit->code;
+
+        if(isset($category)){
+            $article->category_code = $category->code;
+        }
+        $article->description = $request->description;
+
+
+
+        if($request->hasFile('image')){
+
+            if(strcmp($article->image, '/storage/static/service.png') == 0){
+                $have = false;
+            }else if(strcmp($article->image, '/storage/static/product.png') == 0){
+                $have = false;
+            }else{
+                $have = true;
+            }
+
+            if($have){
+                if(file_exists(public_path($article->image))){
+                    File::delete(public_path($article->image));
+                }
+            }
+
+            $store = '/storage/root/cmp-'.$company->id.'/articles';
+            Utility::mkdir($store);
+            $image = $request->file('image');
+            $img_name = $company->id.'-'.time().'.'.$image->getClientOriginalExtension();
+            $desti = public_path($store);
+            $article->image = '/storage/root/cmp-'.$company->id.'/articles/'.$img_name;
+        }else{
+            $article->image = $request->type==0?'/storage/static/product.png':'/storage/static/service.png';
+        }
+
+        if(!$article->save()){
+            return redirect()->back()->withErrors(['Product failed :/ !']);
+        }
+
+        if($request->hasFile('image')){
+            $image->move($desti,$img_name);
+        }
+
+        return redirect('/product-service')->with(['Product/Service Saved :) !']);
+    }
 }
