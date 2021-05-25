@@ -9,5 +9,5 @@ class ProductUnit extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','company_id','created_by'];
+    protected $fillable = ['code','name','company_id','created_by'];
 }

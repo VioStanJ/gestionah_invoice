@@ -20,4 +20,9 @@ class Article extends Model
     {
         return $this->hasOne('App\Models\Subcategory','code', 'sub_category_code');
     }
+
+    public function unit()
+    {
+        return $this->hasOne('App\Models\ProductUnit', 'code', 'unit_code')->first();
+    }
 }

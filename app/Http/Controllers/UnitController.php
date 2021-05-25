@@ -27,6 +27,7 @@ class UnitController extends Controller
         $company = Utility::getCompany($request->user());
 
         $unit = ProductUnit::create([
+            'code'=>'U-'.$company->id.time(),
             'company_id'=>$company->id,
             'name'=>$request->name,
             'created_by'=>$request->user()->id

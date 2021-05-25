@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 
 class Utility extends Model
 {
@@ -33,5 +34,13 @@ class Utility extends Model
             return redirect()->back()->withErrors(['Company not found !']);
         }
         return $user->userCompany->company;
+    }
+
+    public static function mkdir($name)
+    {
+        // '/channels/cover'
+        if(!File::isDirectory($name)){
+            File::makeDirectory($name, 0777, true, true);
+        }
     }
 }
