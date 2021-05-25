@@ -11,7 +11,7 @@ class CategoryController extends Controller
     {
         $company = \App\Utility::getCompany($request->user());
 
-        $categories = category::where('company_id','=',$company->id)->get();
+        $categories = category::where('company_id','=',$company->id)->where('status','=',1)->get();
 
         return view('category.index',compact('categories'));
     }
@@ -80,5 +80,18 @@ class CategoryController extends Controller
         }
 
         return redirect()->back()->withInput(['Updated with Success :) !']);
+    }
+
+    public function destroy($id)
+    {
+        $category = category::find($id);
+
+        $category->status = 0;
+
+        if(!$category->save()){
+            return redirect()->back()->withErrors(['Deleted failed :/ !']);
+        }
+
+        return redirect()->back()->withInput(['Category Deleted :) ']);
     }
 }

@@ -25,6 +25,7 @@ Route::get('category/save',[App\Http\Controllers\CategoryController::class,'crea
 Route::post('category/store',[App\Http\Controllers\CategoryController::class,'store'])->name('category.store');
 Route::get('category/edit/{id}',[App\Http\Controllers\CategoryController::class,'edit'])->name('category.edit');
 Route::put('category/update/{id}',[App\Http\Controllers\CategoryController::class,'update'])->name('category.update');
+Route::delete('category/delete/{id}',[App\Http\Controllers\CategoryController::class,'destroy'])->name('category.destroy');
 
 Route::get('/unit',[App\Http\Controllers\UnitController::class,'index'])->name('unit');
 Route::get('/unit/create',[App\Http\Controllers\UnitController::class,'create'])->name('unit.create');

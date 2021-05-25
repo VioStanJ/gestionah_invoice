@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>GestionaH - Dashboard</title>
+    <title>GestionaH - @yield('title')</title>
     <link rel="icon" href="favicon.ico" type="image" sizes="16x16">
 
     <link rel="stylesheet" href="{{ asset('assets/libs/@fortawesome/fontawesome-free/css/all.min.css') }}">
