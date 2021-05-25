@@ -93,9 +93,9 @@ class ProductController extends Controller
     {
         $company = Utility::getCompany($request->user());
 
-        $units = ProductUnit::where('company_id','=',$company->id)->where('status','=',1)->get()->pluck('name', 'id');
+        $units = ProductUnit::where('company_id','=',$company->id)->where('status','=',1)->get()->pluck('name','code', 'id');
 
-        $categories = category::where('company_id','=',$company->id)->where('status','=',1)->where('type','=',0)->get()->pluck('name', 'id');
+        $categories = category::where('company_id','=',$company->id)->where('status','=',1)->where('type','=',0)->get()->pluck('name','code', 'id');
 
         $product = Article::find($id);
 

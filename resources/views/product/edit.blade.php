@@ -44,11 +44,11 @@
 
         <div class="form-group  col-md-6">
             {{ Form::label('category_id', __('Category'),['class'=>'form-control-label']) }}
-            {{ Form::select('category_id', $categories,null, array('class' => 'form-control select2','required'=>'required')) }}
+            {{ Form::select('category_id', $categories,$product->category_code, array('class' => 'form-control select2','required'=>'required')) }}
         </div>
         <div class="form-group  col-md-6">
             {{ Form::label('unit_id', __('Unit'),['class'=>'form-control-label']) }}
-            {{ Form::select('unit_id', $units,null, array('class' => 'form-control select2','required'=>'required')) }}
+            {{ Form::select('unit_id', $units,$product->unit_code, array('class' => 'form-control select2','required'=>'required')) }}
         </div>
         <div class="col-md-6">
             <div class="form-group">
