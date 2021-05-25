@@ -37,7 +37,7 @@ class CategoryController extends Controller
         $category->code = 'K-'.$company->id.time();
         $category->company_id = $company->id;
         $category->name = $request->name;
-        $category->color = $request->color;
+        $category->color = '#'.$request->color;
         $category->type = $request->type;
         $category->created_by = $request->user()->id;
 

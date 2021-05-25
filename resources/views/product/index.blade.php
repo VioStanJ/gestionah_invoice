@@ -51,6 +51,7 @@
                         <table class="table table-striped mb-0 dataTable">
                             <thead>
                             <tr role="row">
+                                <th>{{__('Image')}}</th>
                                 <th>{{__('Name')}}</th>
                                 <th>{{__('Sku')}}</th>
                                 <th>{{__('Sale Price')}}</th>
@@ -65,11 +66,14 @@
                             <tbody>
                             @foreach ($products as $productService)
                                 <tr class="font-style">
+                                    <td  style="padding: 10px 5px 5px 5px!important;">
+                                        <img src="{{asset($productService->image)}}" alt="{{ $productService->name}}" class="ti-imaj">
+                                    </td>
                                     <td>{{ $productService->name}}</td>
                                     <td>{{ $productService->sku }}</td>
                                     <td>{{ $productService->ttc }}</td>
                                     <td>{{ $productService->price }}</td>
-                                    <td>{{ !empty($productService->category)?$productService->category->name:'' }}</td>
+                                    <td><span style="color : {{!empty($productService->category)?$productService->category->color:''}}">{{ !empty($productService->category)?$productService->category->name:'' }}</span></td>
                                     <td>{{ !empty($productService->unit())?$productService->unit()->name:'' }}</td>
                                     <td>{{ $productService->is_service==1?__('Service'):__('Product') }}</td>
 

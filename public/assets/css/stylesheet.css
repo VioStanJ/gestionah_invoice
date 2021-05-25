@@ -8,6 +8,16 @@
 .pointer{
     cursor: pointer!important;
 }
+.th-ti-imaj{
+    padding : 10px!important;
+}
+.ti-imaj{
+    width: 40px;
+    height: 40px;
+    background: lightgray;
+    border-radius: 5px;
+    object-fit: cover;
+}
 @font-face {
     font-family: 'Montserrat-SemiBold';
     src: url('../fonts/Montserrat-SemiBold.eot');
