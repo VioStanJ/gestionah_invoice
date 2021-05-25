@@ -172,4 +172,17 @@ class ProductController extends Controller
 
         return redirect('/product-service')->with(['Product/Service Saved :) !']);
     }
+
+    public function destroy($id)
+    {
+        $unit = Article::find($id);
+
+        $unit->status = 0;
+
+        if(!$unit->save()){
+            return redirect()->back()->withErrors(['Deleted failed :/ !']);
+        }
+
+        return redirect()->back()->withInput(['Product Deleted :) ']);
+    }
 }
