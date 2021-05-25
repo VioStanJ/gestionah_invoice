@@ -4,6 +4,10 @@
     {{__('Dashboard')}}
 @endsection
 
+@section('title')
+    {{__('Dashboard')}}
+@endsection
+
 @push('script-page')
     <script>
             @if(\Auth::user()->can('show dashboard'))

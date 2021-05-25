@@ -24,7 +24,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link {{ (Request::segment(1) == 'productservice')?'active':''}}">
+                    <a href="/product-service" class="nav-link {{ (Request::segment(1) == 'productservice')?'active':''}}">
                         <i class="fas fa-shopping-cart"></i>{{__('Product & Service')}}
                     </a>
                 </li>

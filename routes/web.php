@@ -20,16 +20,42 @@ Route::get('/verify/email',[App\Http\Controllers\VerifyAuthController::class,'ve
 Route::post('/verify/email',[App\Http\Controllers\VerifyAuthController::class,'resend'])->name('verification.resend');
 Route::get('/verify/your/email/{code}',[App\Http\Controllers\VerifyAuthController::class,'verifyCode']);
 
-Route::get('category',[App\Http\Controllers\CategoryController::class,'index'])->name('category');
-Route::get('category/save',[App\Http\Controllers\CategoryController::class,'create'])->name('category.create');
-Route::post('category/store',[App\Http\Controllers\CategoryController::class,'store'])->name('category.store');
-Route::get('category/edit/{id}',[App\Http\Controllers\CategoryController::class,'edit'])->name('category.edit');
-Route::put('category/update/{id}',[App\Http\Controllers\CategoryController::class,'update'])->name('category.update');
-Route::delete('category/delete/{id}',[App\Http\Controllers\CategoryController::class,'destroy'])->name('category.destroy');
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/unit',[App\Http\Controllers\UnitController::class,'index'])->name('unit');
-Route::get('/unit/create',[App\Http\Controllers\UnitController::class,'create'])->name('unit.create');
-Route::post('/unit/store',[App\Http\Controllers\UnitController::class,'store'])->name('unit.store');
-Route::get('/unit/edit/{id}',[App\Http\Controllers\UnitController::class,'edit'])->name('unit.edit');
-Route::put('/unit/update/{id}',[App\Http\Controllers\UnitController::class,'update'])->name('unit.update');
-Route::delete('/unit/delete/{id}',[App\Http\Controllers\UnitController::class,'destroy'])->name('unit.destroy');
+    // Category
+    Route::prefix('category')->group(function()
+    {
+        Route::get('/',[App\Http\Controllers\CategoryController::class,'index'])->name('category');
+        Route::get('/save',[App\Http\Controllers\CategoryController::class,'create'])->name('category.create');
+        Route::post('/store',[App\Http\Controllers\CategoryController::class,'store'])->name('category.store');
+        Route::get('/edit/{id}',[App\Http\Controllers\CategoryController::class,'edit'])->name('category.edit');
+        Route::put('/update/{id}',[App\Http\Controllers\CategoryController::class,'update'])->name('category.update');
+        Route::delete('/delete/{id}',[App\Http\Controllers\CategoryController::class,'destroy'])->name('category.destroy');
+    });
+
+    // Unit
+    Route::prefix('unit')->group(function()
+    {
+        Route::get('/',[App\Http\Controllers\UnitController::class,'index'])->name('unit');
+        Route::get('/create',[App\Http\Controllers\UnitController::class,'create'])->name('unit.create');
+        Route::post('/store',[App\Http\Controllers\UnitController::class,'store'])->name('unit.store');
+        Route::get('/edit/{id}',[App\Http\Controllers\UnitController::class,'edit'])->name('unit.edit');
+        Route::put('/update/{id}',[App\Http\Controllers\UnitController::class,'update'])->name('unit.update');
+        Route::delete('/delete/{id}',[App\Http\Controllers\UnitController::class,'destroy'])->name('unit.destroy');
+    });
+
+    // Unit
+    Route::prefix('product-service')->group(function()
+    {
+        Route::get('/',[App\Http\Controllers\ProductController::class,'index'])->name('productservice');
+        Route::get('/create',[App\Http\Controllers\UnitController::class,'create'])->name('productservice.create');
+        Route::post('/store',[App\Http\Controllers\UnitController::class,'store'])->name('productservice.store');
+        Route::get('/edit/{id}',[App\Http\Controllers\UnitController::class,'edit'])->name('productservice.edit');
+        Route::put('/update/{id}',[App\Http\Controllers\UnitController::class,'update'])->name('productservice.update');
+        Route::delete('/delete/{id}',[App\Http\Controllers\UnitController::class,'destroy'])->name('productservice.destroy');
+    });
+});
+
+
+
+
