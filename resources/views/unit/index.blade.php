@@ -4,6 +4,10 @@
     {{__('Unit')}}
 @endsection
 
+@section('title')
+{{__('Unit')}}
+@endsection
+
 @section('action-button')
     <div class="all-button-box row d-flex justify-content-end">
         <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
