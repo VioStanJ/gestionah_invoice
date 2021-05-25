@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('product-service')->group(function()
     {
         Route::get('/',[App\Http\Controllers\ProductController::class,'index'])->name('productservice');
-        Route::get('/create',[App\Http\Controllers\UnitController::class,'create'])->name('productservice.create');
+        Route::get('/create',[App\Http\Controllers\ProductController::class,'create'])->name('productservice.create');
         Route::post('/store',[App\Http\Controllers\UnitController::class,'store'])->name('productservice.store');
         Route::get('/edit/{id}',[App\Http\Controllers\UnitController::class,'edit'])->name('productservice.edit');
         Route::put('/update/{id}',[App\Http\Controllers\UnitController::class,'update'])->name('productservice.update');

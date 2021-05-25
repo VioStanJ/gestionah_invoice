@@ -9,7 +9,7 @@
 @endsection
 
 @section('action-button')
-    {{-- <div class="row d-flex justify-content-end">
+    <div class="row d-flex justify-content-end">
         <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 pt-lg-3 pt-xl-2">
             <div class="all-button-box">
                 <a href="#" class="btn btn-xs btn-white btn-icon-only width-auto" data-url="{{ route('productservice.create') }}" data-ajax-popup="true" data-title="{{__('Create New Product')}}">
@@ -17,7 +17,7 @@
                 </a>
             </div>
         </div>
-    </div> --}}
+    </div>
 @endsection
 
 @section('content')
