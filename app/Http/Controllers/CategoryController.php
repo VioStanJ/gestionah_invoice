@@ -13,7 +13,7 @@ class CategoryController extends Controller
 
         $categories = category::where('company_id','=',$company->id)->get();
 
-        return view('dashboard.category',compact('categories'));
+        return view('category.index',compact('categories'));
     }
 
     public function create(Request $request)
@@ -46,5 +46,39 @@ class CategoryController extends Controller
         }
 
         return redirect()->back()->withInput(['Created with Success :) !']);
+    }
+
+    public function edit(Request $request,$id)
+    {
+        $types = category::$categoryType;
+
+        $category = category::find($id);
+
+        return view('category.edit',compact('types','category'));
+    }
+
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            'name' => 'required|max:100',
+            'type' => 'required',
+            'color' => 'required',
+        ]);
+
+        $category = category::find($id);
+
+        if(!isset($category)){
+            return redirect()->back()->withErrors(['Category not found :/ !']);
+        }
+
+        $category->name = $request->name;
+        $category->color = $request->color;
+        $category->type = $request->type;
+
+        if(!$category->save()){
+            return redirect()->back()->withErrors(['Update Category failed :/ !']);
+        }
+
+        return redirect()->back()->withInput(['Updated with Success :) !']);
     }
 }

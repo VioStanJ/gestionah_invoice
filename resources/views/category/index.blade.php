@@ -41,11 +41,9 @@
                                     </td>
                                     <td class="Action">
                                         <span>
-                                        @can('edit constant category')
-                                                <a href="#" class="edit-icon" data-url="{{ route('product-category.edit',$category->id) }}" data-ajax-popup="true" data-title="{{__('Edit Product Category')}}" data-toggle="tooltip" data-original-title="{{__('Edit')}}">
+                                            <a href="#" class="edit-icon" data-url="{{ route('category.edit',$category->id) }}" data-ajax-popup="true" data-title="{{__('Edit Product Category')}}" data-toggle="tooltip" data-original-title="{{__('Edit')}}">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-                                            @endcan
                                             @can('delete constant category')
                                                 <a href="#" class="delete-icon" data-toggle="tooltip" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{$category->id}}').submit();">
                                                 <i class="fas fa-trash"></i>
