@@ -72,7 +72,16 @@
                                         <td style="color : {{!empty($productService->category)?$productService->category->color:''}}">{{ !empty($productService->category)?$productService->category->name:'' }}</td>
                                         <td>{{ !empty($productService->unit())?$productService->unit()->name:'' }}</td>
                                         <td>{{ $productService->is_service==1?__('Service'):__('Product') }}</td>
-                                        <td></td>
+                                        <td class="Action">
+                                            <a href="#" class="edit-icon" data-url="{{ route('productservice.edit',$productService->id) }}" data-ajax-popup="true" data-title="{{__('Edit Product Service')}}" data-toggle="tooltip" data-original-title="{{__('Edit')}}">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                            <a href="#" class="delete-icon " data-toggle="tooltip" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{$productService->id}}').submit();">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['productservice.destroy', $productService->id],'id'=>'delete-form-'.$productService->id]) !!}
+                                            {!! Form::close() !!}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

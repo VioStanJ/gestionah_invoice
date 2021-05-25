@@ -88,4 +88,17 @@ class ProductController extends Controller
 
         return redirect('/product-service')->with(['Product/Service Saved :) !']);
     }
+
+    public function edit(Request $request,$id)
+    {
+        $company = Utility::getCompany($request->user());
+
+        $units = ProductUnit::where('company_id','=',$company->id)->where('status','=',1)->get()->pluck('name', 'id');
+
+        $categories = category::where('company_id','=',$company->id)->where('status','=',1)->where('type','=',0)->get()->pluck('name', 'id');
+
+        $product = Article::find($id);
+
+        return view('product.edit',compact('product','units','categories'));
+    }
 }
