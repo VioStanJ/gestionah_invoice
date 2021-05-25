@@ -11,6 +11,12 @@ class category extends Model
 
     protected $fillable = ['code','company_id','name','color','description','status'];
 
+    public static $categoryType = [
+        'Product & Service',// 0
+        'Income',// 1
+        'Expense',// 2
+    ];
+
     public function articles(){
         return $this->hasMany('App\Models\article');
     }
