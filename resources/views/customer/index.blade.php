@@ -16,7 +16,12 @@
 
     </script>
 @endpush
+
 @section('page-title')
+    {{__('Manage Customers')}}
+@endsection
+
+@section('title')
     {{__('Manage Customers')}}
 @endsection
 
