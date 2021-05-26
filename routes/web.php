@@ -54,6 +54,17 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/update/{id}',[App\Http\Controllers\ProductController::class,'update'])->name('productservice.update');
         Route::delete('/delete/{id}',[App\Http\Controllers\ProductController::class,'destroy'])->name('productservice.destroy');
     });
+
+    // Customers
+    Route::prefix('customer')->group(function()
+    {
+        Route::get('/',[App\Http\Controllers\CustomerController::class,'index'])->name('customer');
+        Route::get('/create',[App\Http\Controllers\CustomerController::class,'create'])->name('customer.create');
+        Route::post('/store',[App\Http\Controllers\CustomerController::class,'store'])->name('customer.store');
+        Route::get('/edit/{id}',[App\Http\Controllers\CustomerController::class,'edit'])->name('customer.edit');
+        Route::put('/update/{id}',[App\Http\Controllers\CustomerController::class,'update'])->name('customer.update');
+        Route::delete('/delete/{id}',[App\Http\Controllers\CustomerController::class,'destroy'])->name('customer.destroy');
+    });
 });
 
 
