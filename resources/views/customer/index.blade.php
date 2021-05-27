@@ -64,30 +64,26 @@
                                     <td class="font-style">{{$customer['name']}}</td>
                                     <td>{{$customer['phone']??'--'}}</td>
                                     <td>{{$customer->customer->email??'??'}}</td>
-                                    {{-- <td>{{\Auth::user()->priceFormat($customer['balance'])}}</td> --}}
+                                    <td>
+                                        {{-- {{\Auth::user()->priceFormat($customer['balance'])}} --}}
+                                    </td>
                                     <td class="Action">
                                         <span>
-                                        @if($customer['is_active']==0)
-                                                <i class="fa fa-lock" title="Inactive"></i>
-                                            @else
-                                                @can('show customer')
-                                                    <a href="{{ route('customer.show',\Crypt::encrypt($customer['id'])) }}" class="edit-icon bg-success" data-toggle="tooltip" data-original-title="{{__('View')}}">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                @endcan
-                                                @can('edit customer')
-                                                    <a href="#" class="edit-icon" data-size="2xl" data-url="{{ route('customer.edit',$customer['id']) }}" data-ajax-popup="true" data-title="{{__('Edit Customer')}}" data-toggle="tooltip" data-original-title="{{__('Edit')}}">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                                @endcan
-                                                @can('delete customer')
-                                                    <a href="#" class="delete-icon " data-toggle="tooltip" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{ $customer['id']}}').submit();">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                                    {!! Form::open(['method' => 'DELETE', 'route' => ['customer.destroy', $customer['id']],'id'=>'delete-form-'.$customer['id']]) !!}
-                                                    {!! Form::close() !!}
-                                                @endcan
-                                            @endif
+                                            <a href="{{ route('customer.show',\Crypt::encrypt($customer['customer_code'])) }}" class="edit-icon bg-success" data-toggle="tooltip" data-original-title="{{__('View')}}">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+
+                                            <a href="#" class="edit-icon" data-size="2xl" data-url="{{ route('customer.edit',$customer['customer_code']) }}" data-ajax-popup="true" data-title="{{__('Edit Customer')}}" data-toggle="tooltip" data-original-title="{{__('Edit')}}">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+
+                                            @can('delete customer')
+                                                <a href="#" class="delete-icon " data-toggle="tooltip" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{ $customer['id']}}').submit();">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                                {!! Form::open(['method' => 'DELETE', 'route' => ['customer.destroy', $customer['customer_code']],'id'=>'delete-form-'.$customer['customer_code']]) !!}
+                                                {!! Form::close() !!}
+                                            @endcan
                                         </span>
                                     </td>
                                 </tr>

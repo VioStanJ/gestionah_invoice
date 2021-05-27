@@ -35,7 +35,6 @@ class CustomerController extends Controller
             'email'=>'required|email'
         ]);
 
-
         $company = Utility::getCompany($request->user());
 
         $customer = Customer::where('email','=',$request->email)->get()->first();
@@ -90,6 +89,18 @@ class CustomerController extends Controller
 
     public function show(Request $request,$code)
     {
+
+    }
+
+    public function edit(Request $request,$code)
+    {
+        $customer = Customer::where('code','=',$code)->get()->first();
+
+        $company = Utility::getCompany($request->user());
+
+        $info = CustomerInformation::where('customer_code','=',$code)->where('company_id','=',$company->id)->get()->first();
+
+        return view('customer.edit',compact(['customer','info']));
 
     }
 
