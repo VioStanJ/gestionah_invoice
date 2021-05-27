@@ -106,7 +106,7 @@
                         <div class="p-4">
                             <h5 class="report-text gray-text mb-0">{{__('info Id')}}</h5>
                             {{-- <h5 class="report-text mb-3">{{Auth::user()->infoNumberFormat($info['info_id'])}}</h5> --}}
-                            <h5 class="report-text mb-3">date</h5>
+                            <h5 class="report-text mb-3">{{$customer->code}}</h5>
                             <h5 class="report-text gray-text mb-0">{{__('Total Sum of Invoices')}}</h5>
                             {{-- <h5 class="report-text mb-0">{{\Auth::user()->priceFormat($totalInvoiceSum)}}</h5> --}}
                             <h5 class="report-text mb-0">00</h5>
