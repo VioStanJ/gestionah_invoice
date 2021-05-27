@@ -91,7 +91,19 @@ class CustomerController extends Controller
 
     public function show(Request $request,$code)
     {
+        $code = \Crypt::decrypt($code);
 
+        $customer = Customer::where('code','=',$code)->get()->first();
+
+        $company = Utility::getCompany($request->user());
+
+        $info = CustomerInformation::where('customer_code','=',$code)->where('company_id','=',$company->id)->get()->first();
+
+        $proposals = [];
+
+        $invoices = [];
+
+        return view('customer.show', compact('customer','info','proposals','invoices'));
     }
 
     public function edit(Request $request,$code)
