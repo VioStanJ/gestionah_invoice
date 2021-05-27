@@ -1,5 +1,5 @@
 <div class="card bg-none card-box">
-    {{Form::open(array('url'=>'customer','method'=>'post'))}}
+    {{Form::open(array('url'=>'customer/store','method'=>'post'))}}
     <h5 class="sub-title">{{__('Basic Info')}}</h5>
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -13,10 +13,10 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="form-group">
-                {{Form::label('contact',__('Contact'),['class'=>'form-control-label'])}}
+                {{Form::label('phone',__('Phone'),['class'=>'form-control-label'])}}
                 <div class="form-icon-user">
                     <span><i class="fas fa-mobile-alt"></i></span>
-                    {{Form::text('contact',null,array('class'=>'form-control','required'=>'required'))}}
+                    {{Form::text('phone',null,array('class'=>'form-control','required'=>'required'))}}
                 </div>
             </div>
         </div>
@@ -25,26 +25,10 @@
                 {{Form::label('email',__('Email'),['class'=>'form-control-label'])}}
                 <div class="form-icon-user">
                     <span><i class="fas fa-envelope"></i></span>
-                    {{Form::text('email',null,array('class'=>'form-control'))}}
+                    {{Form::text('email',null,array('class'=>'form-control','required'=>'required'))}}
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="form-group">
-                {{Form::label('password',__('Password'),['class'=>'form-control-label'])}}
-                <div class="form-icon-user">
-                    <span><i class="fas fa-key"></i></span>
-                    {{Form::password('password',array('class'=>'form-control','required'=>'required','minlength'=>"6"))}}
-                </div>
-            </div>
-        </div>
-        {{-- @if(!$customFields->isEmpty())
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="tab-pane fade show" id="tab-2" role="tabpanel">
-                    @include('customFields.formBuilder')
-                </div>
-            </div>
-        @endif --}}
     </div>
 
     <h5 class="sub-title">{{__('Billing Address')}}</h5>
@@ -66,6 +50,7 @@
                     {{Form::text('billing_country',null,array('class'=>'form-control'))}}
                 </div>
             </div>
+
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="form-group">

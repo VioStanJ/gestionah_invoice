@@ -9,7 +9,7 @@ class ArticleController extends Controller
 {
     public function index(Request $reques)
     {
-        $articles =
+        $articles = [];
         return view('dashboard.product');
     }
 
