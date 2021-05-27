@@ -182,6 +182,19 @@ class CustomerController extends Controller
         return redirect('customer')->with(['Customer Edited :) !']);
     }
 
+    public function destroy(Request $request,$code)
+    {
+        $company = Utility::getCompany($request->user());
+
+        $info = CustomerInformation::where('customer_code','=',$code)->where('company_id','=',$company->id)->get()->first();
+
+        $info->status = 0;
+
+        $info->save();
+
+        return redirect()->back()->with(['Customer deleted !']);
+    }
+
     function keygen($length=10)
     {
         $key = '';

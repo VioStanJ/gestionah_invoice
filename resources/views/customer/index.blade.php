@@ -77,13 +77,11 @@
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
 
-                                            @can('delete customer')
-                                                <a href="#" class="delete-icon " data-toggle="tooltip" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{ $customer['id']}}').submit();">
+                                            <a href="#" class="delete-icon " data-toggle="tooltip" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{ $customer['customer_code']}}').submit();">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                                 {!! Form::open(['method' => 'DELETE', 'route' => ['customer.destroy', $customer['customer_code']],'id'=>'delete-form-'.$customer['customer_code']]) !!}
                                                 {!! Form::close() !!}
-                                            @endcan
                                         </span>
                                     </td>
                                 </tr>
