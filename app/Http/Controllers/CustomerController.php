@@ -82,9 +82,11 @@ class CustomerController extends Controller
             return redirect()->back()->withErrors(['Failed to save Customer :/ !']);
         }
 
+        //Send email
+
         DB::commit();
 
-        return redirect('customer')->with(['Customer Save :) !']);
+        return redirect('customer')->with(['Customer Saved :) !']);
     }
 
     public function show(Request $request,$code)
@@ -100,8 +102,84 @@ class CustomerController extends Controller
 
         $info = CustomerInformation::where('customer_code','=',$code)->where('company_id','=',$company->id)->get()->first();
 
-        return view('customer.edit',compact(['customer','info']));
+        $read = false;
 
+        if($customer->email_verified_at != null || $customer->email_verified_at != ''){
+            $read = true;
+        }
+
+        return view('customer.edit',compact(['customer','info','read']));
+    }
+
+    public function update(Request $request,$code)
+    {
+        $request->validate([
+            'name'=>'required',
+            'phone'=>'required',
+            'email'=>'required|email'
+        ]);
+
+        $company = Utility::getCompany($request->user());
+
+        $customer = Customer::where('code','=',$code)->get()->first();
+
+        DB::beginTransaction();
+
+        if(!isset($customer)){
+            return redirect()->back()->withErrors(['Customer not found :/ !']);
+        }
+
+        $send = false;
+
+        if($customer->email != $request->email){
+
+            $customer->email = $request->email;
+
+            if($customer->email_verified_at != null || $customer->email_verified_at != ''){
+                $send = true;
+            }
+
+            if(!$customer->save()){
+                return redirect()->back()->withErrors(['Customer failed on edit :/ !']);
+            }
+        }
+
+        $info = CustomerInformation::where('customer_code','=',$code)->where('company_id','=',$company->id)->get()->first();
+
+        if(!isset($info)){
+            $info = new CustomerInformation();
+            $info->company_id      = $company->id;
+            $info->created_by      = $request->user()->id;
+            $info->customer_code   = $customer->code;
+        }
+
+        $info->name            = $request->name;
+        $info->phone           = $request->phone;
+
+        $info->billing_name    = $request->billing_name;
+        $info->billing_country = $request->billing_country;
+        $info->billing_state   = $request->billing_state;
+        $info->billing_city    = $request->billing_city;
+        $info->billing_phone   = $request->billing_phone;
+        $info->billing_zip     = $request->billing_zip;
+        $info->billing_address = $request->billing_address;
+
+        $info->shipping_name    = $request->shipping_name;
+        $info->shipping_country = $request->shipping_country;
+        $info->shipping_state   = $request->shipping_state;
+        $info->shipping_city    = $request->shipping_city;
+        $info->shipping_phone   = $request->shipping_phone;
+        $info->shipping_zip     = $request->shipping_zip;
+        $info->shipping_address = $request->shipping_address;
+
+        if(!$info->save()){
+            DB::rollBack();
+            return redirect()->back()->withErrors(['Failed to edit Customer :/ !']);
+        }
+
+        DB::commit();
+
+        return redirect('customer')->with(['Customer Edited :) !']);
     }
 
     function keygen($length=10)

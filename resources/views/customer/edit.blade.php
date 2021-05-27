@@ -1,5 +1,5 @@
 <div class="card bg-none card-box">
-    {{Form::model($info,array('route' => array('customer.update', $customer->id), 'method' => 'PUT')) }}
+    {{Form::model($info,array('route' => array('customer.update', $customer->code), 'method' => 'PUT')) }}
     <h5 class="sub-title">{{__('Basic Info')}}</h5>
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -25,7 +25,11 @@
                 {{Form::label('email',__('Email'),['class'=>'form-control-label'])}}
                 <div class="form-icon-user">
                     <span><i class="fas fa-envelope"></i></span>
-                    {{Form::text('email',$customer->email,array('class'=>'form-control','required'=>'required'))}}
+                    @if ($read)
+                        {{Form::text('email',$customer->email,array('class'=>'form-control','required'=>'required','readonly'))}}
+                    @else
+                        {{Form::text('email',$customer->email,array('class'=>'form-control','required'=>'required'))}}
+                    @endif
                 </div>
             </div>
         </div>
