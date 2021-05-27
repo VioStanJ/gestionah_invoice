@@ -13,7 +13,9 @@ class CustomerController extends Controller
 {
     public function index(Request $request)
     {
-        $customers = [];
+        $company = Utility::getCompany($request->user());
+
+        $customers = CustomerInformation::where('company_id','=',$company->id)->where('status','=',1)->get();
 
         return view('customer.index',compact('customers'));
     }
@@ -43,7 +45,8 @@ class CustomerController extends Controller
         if(!isset($customer)){
             $customer = new Customer();
             $customer->email = $request->email;
-            $customer->password = bcrypt($this->keygen(12));
+            // $customer->password = bcrypt('CUS'.$company->id.$this->keygen(12));
+            $customer->password = bcrypt('pass0011'); // For test
             $customer->code = "CUS-".$company->id.time();
 
             if(!$customer->save()){
@@ -83,6 +86,11 @@ class CustomerController extends Controller
         DB::commit();
 
         return redirect('customer')->with(['Customer Save :) !']);
+    }
+
+    public function show(Request $request,$code)
+    {
+
     }
 
     function keygen($length=10)

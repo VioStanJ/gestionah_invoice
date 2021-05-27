@@ -29,6 +29,16 @@ class CustomerInformation extends Model
         'shipping_phone',
         'shipping_zip',
         'shipping_address',
-        'status0'
+        'status'
     ];
+
+    /**
+     * Get the customer associated with the CustomerInformation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function customer()
+    {
+        return $this->hasOne('App\Models\Customer', 'code', 'customer_code');
+    }
 }

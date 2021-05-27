@@ -46,7 +46,7 @@
                             <tr>
                                 <th>#</th>
                                 <th> {{__('Name')}}</th>
-                                <th> {{__('Contact')}}</th>
+                                <th> {{__('Phone')}}</th>
                                 <th> {{__('Email')}}</th>
                                 <th> {{__('Balance')}}</th>
                                 <th>{{__('Action')}}</th>
@@ -57,19 +57,13 @@
                             @foreach ($customers as $k=>$customer)
                                 <tr class="cust_tr" id="cust_detail" data-url="" data-id="{{$customer['id']}}">
                                     <td class="Id">
-                                        @can('show customer')
-                                            <a href="{{ route('customer.show',\Crypt::encrypt($customer['id'])) }}">
-                                                {{-- {{ AUth::user()->customerNumberFormat($customer['customer_id']) }} --}}
-                                            </a>
-                                        @else
-                                            <a href="#" class="btn btn-outline-primary">
-                                                {{-- {{ AUth::user()->customerNumberFormat($customer['customer_id']) }} --}}
-                                            </a>
-                                        @endcan
+                                        <a href="{{ route('customer.show',\Crypt::encrypt($customer['customer_code'])) }}">
+                                            {{ $customer->customer_code??'??' }}
+                                        </a>
                                     </td>
                                     <td class="font-style">{{$customer['name']}}</td>
-                                    <td>{{$customer['contact']}}</td>
-                                    <td>{{$customer['email']}}</td>
+                                    <td>{{$customer['phone']??'--'}}</td>
+                                    <td>{{$customer->customer->email??'??'}}</td>
                                     {{-- <td>{{\Auth::user()->priceFormat($customer['balance'])}}</td> --}}
                                     <td class="Action">
                                         <span>

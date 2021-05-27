@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}',[App\Http\Controllers\CustomerController::class,'edit'])->name('customer.edit');
         Route::put('/update/{id}',[App\Http\Controllers\CustomerController::class,'update'])->name('customer.update');
         Route::delete('/delete/{id}',[App\Http\Controllers\CustomerController::class,'destroy'])->name('customer.destroy');
+        Route::get('/show/{code}',[App\Http\Controllers\CustomerController::class,'show'])->name('customer.show');
     });
 });
 
