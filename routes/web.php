@@ -12,6 +12,10 @@ Route::post('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Customer Login
+Route::get('/customer/login',[App\Http\Controllers\Auth\CustomerController::class,'showCustomerLoginForm'])->name('customer.show.login');
+Route::post('/customer/login',[App\Http\Controllers\Auth\CustomerController::class,'login'])->name('customer.login');
+
 // Auth::routes();
 Route::get('/register',[App\Http\Controllers\Auth\RegisterController::class,'show'])->name('register');
 Route::post('/register',[App\Http\Controllers\Auth\RegisterController::class,'create']);
@@ -65,9 +69,15 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/update/{code}',[App\Http\Controllers\CustomerController::class,'update'])->name('customer.update');
         Route::delete('/delete/{code}',[App\Http\Controllers\CustomerController::class,'destroy'])->name('customer.destroy');
         Route::get('/show/{code}',[App\Http\Controllers\CustomerController::class,'show'])->name('customer.show');
+
     });
 });
 
 
+// CUSTOMER ROUTES
 
+// Route::middleware(['customer'])->group(function () {
+    Route::get('/dashboard',[App\Http\Controllers\Customer\HomeController::class,'index'])->name('customer.home');
+
+// });
 

@@ -110,15 +110,15 @@
                         <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>{{__('Logout')}}</span>
-                            {{-- @if(\Auth::guard('customer')->check())
-                                <form id="frm-logout" action="{{ route('customer.logout') }}" method="POST" class="d-none">
+                            @if(\Auth::guard('customer')->check())
+                                <form id="frm-logout" action="{{ route('logout') }}" method="POST" class="d-none">
                                     {{ csrf_field() }}
                                 </form>
                             @else
                                 <form id="frm-logout" action="{{ route('logout') }}" method="POST" class="d-none">
                                     {{ csrf_field() }}
                                 </form>
-                            @endif --}}
+                            @endif
                         </a>
                     </div>
                 </li>
