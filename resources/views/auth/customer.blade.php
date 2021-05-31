@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('title')
-Custome Login
+Customer Login
 @endsection
 
 @section('content')

@@ -76,8 +76,9 @@ Route::middleware(['auth'])->group(function () {
 
 // CUSTOMER ROUTES
 
-// Route::middleware(['customer'])->group(function () {
+Route::middleware(['auth:customer,customer', 'verified'])->group(function () {
     Route::get('/dashboard',[App\Http\Controllers\Customer\HomeController::class,'index'])->name('customer.home');
+    Route::get('/customer/logout',[App\Http\Controllers\Customer\HomeController::class,'logout'])->name('customer.logout');
 
-// });
+});
 

@@ -20,22 +20,23 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
 
-        // $guards = empty($guards) ? [null] : $guards;
+        $guards = empty($guards) ? [null] : $guards;
 
-        // foreach ($guards as $guard) {
-        //     if (Auth::guard($guard)->check()) {
-        //         return redirect(RouteServiceProvider::HOME);
-        //     }
-        // }
+        foreach ($guards as $guard) {
+            switch ($guard) {
+                case 'customer':
+                    if (Auth::guard($guard)->check()) {
+                        return redirect('/dashboard');
+                    }
+                    break;
 
-        if ($guards == "customer" && Auth::guard($guards)->check()) {
-            return redirect('/dashboard');
+                default:
+                    if (Auth::guard($guard)->check()) {
+                        return redirect('/home');
+                    }
+                    break;
+            }
         }
-
-        if (Auth::guard($guards)->check()) {
-            return redirect('/home');
-        }
-
         return $next($request);
     }
 }

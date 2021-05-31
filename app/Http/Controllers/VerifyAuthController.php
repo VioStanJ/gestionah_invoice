@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Mail\VerifyEmail;
 use App\Models\UserActivation;
 use Carbon\Carbon;
-use App\Models\User;
 
 class VerifyAuthController extends Controller
 {
