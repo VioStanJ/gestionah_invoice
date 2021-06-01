@@ -32,12 +32,15 @@ class ProposalController extends Controller
         $company = \App\Utility::getCompany($request->user());
 
         $customers = CustomerInformation::where('company_id', '=',$company->id)->get()->pluck('name', 'customer_code');
+        $customers->prepend('Select Customer', '');
 
         $category = category::where('company_id','=',$company->id)->where('status','=',1)->where('type','=',1)->get()->pluck('name', 'code');;
+        $category->prepend('Select Category', '');
 
         $proposal_number = $this->getProposalNumber($request,$company);
 
         $product_services = Article::where('company_id','=',$company->id)->where('status','=',1)->get()->pluck('name', 'code');
+        $product_services->prepend('--', '');
 
         return view('proposal.create',compact('customerId','customers','category','proposal_number','product_services'));
     }
