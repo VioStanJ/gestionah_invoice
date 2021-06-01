@@ -45,6 +45,11 @@ class ProposalController extends Controller
         return view('proposal.create',compact('customerId','customers','category','proposal_number','product_services'));
     }
 
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function customer(Request $request)
     {
         $customer = CustomerInformation::where('customer_code', '=', $request->id)->first();

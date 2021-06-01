@@ -300,7 +300,7 @@
 @endpush
 @section('content')
     <div class="row">
-        {{ Form::open(array('url' => 'proposal','class'=>'w-100')) }}
+        {{ Form::open(array('url' => 'proposal/store','class'=>'w-100')) }}
         <div class="col-12">
             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <div class="card">
@@ -457,16 +457,16 @@
                                 <td class="text-right totalDiscount">0.00</td>
                                 <td></td>
                             </tr>
-                            {{-- <tr>
+                            <tr style="visibility: hidden;">
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                                 <td></td>
-                                <td><strong>{{__('Tax')}} ({{\Auth::user()->currencySymbol()}})</strong></td>
+                                {{-- <td><strong>{{__('Tax')}} ({{\Auth::user()->currencySymbol()}})</strong></td> --}}
                                 <td><strong>{{__('Tax')}} ($)</strong></td>
                                 <td class="text-right totalTax">0.00</td>
                                 <td></td>
-                            </tr> --}}
+                            </tr>
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
