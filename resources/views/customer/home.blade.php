@@ -1,1 +1,9 @@
-<h4>Customer Dashboard</h4>
+@extends('layouts.customer')
+
+@section('page-title')
+    {{__('Dashboard')}}
+@endsection
+
+@section('title')
+{{__('Dashboard')}}
+@endsection

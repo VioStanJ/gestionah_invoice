@@ -97,12 +97,14 @@
                         <img src="{{asset($users->image)}}"/>
                       </span>
                             <div class="ml-2 d-none d-lg-block">
-                                <span class="mb-0 text-sm font-weight-bold">{{\Auth::user()->name}}</span>
+                                <span class="mb-0 text-sm font-weight-bold">{{\Auth::user()->name??Auth::user()->email}}</span>
                             </div>
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                        <h6 class="dropdown-header px-0">{{__('Hi')}}, {{\Auth::user()->name}}</h6>
+                        @if(!Auth::guard('customer')->check())
+                            <h6 class="dropdown-header px-0">{{__('Hi')}}, {{\Auth::user()->name}}</h6>
+                        @endif
                         <a class="dropdown-item has-icon pointer">
                             <i class="fas fa-id-badge"></i> <span>{{__('My Profile')}}</span>
                         </a>
@@ -111,7 +113,7 @@
                             <i class="fas fa-sign-out-alt"></i>
                             <span>{{__('Logout')}}</span>
                             @if(\Auth::guard('customer')->check())
-                                <form id="frm-logout" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="frm-logout" action="{{ route('customer.logout') }}" method="POST" class="d-none">
                                     {{ csrf_field() }}
                                 </form>
                             @else
