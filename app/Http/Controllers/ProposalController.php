@@ -49,6 +49,26 @@ class ProposalController extends Controller
         return view('proposal.customer_detail', compact('customer'));
     }
 
+    public function product(Request $request)
+    {
+
+        $data['product'] = $product = Article::where('code','=',$request->product_id)->get()->first();
+
+        // $data['unit']    = (!empty($product->unit())) ? $product->unit()->name : '';
+        // $data['taxRate'] = $taxRate = !empty($product->tax_id) ? $product->taxRate($product->tax_id) : 0;
+
+        // $data['taxes'] = !empty($product->tax_id) ? $product->tax($product->tax_id) : 0;
+        $data['taxes'] = 0;
+
+        $salePrice           = $product->ttc;
+        $quantity            = 1;
+        // $taxPrice            = ($taxRate / 100) * ($salePrice * $quantity);
+        $taxPrice            = 0;
+        $data['totalAmount'] = ($salePrice * $quantity);
+
+        return json_encode($data);
+    }
+
     public function getProposalNumber($request,$company)
     {
         $latest = Proposal::where('company_id', '=', $company->id)->count();

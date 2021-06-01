@@ -120,7 +120,7 @@
                     var item = JSON.parse(data);
 
                     $(el.parent().parent().find('.quantity')).val(1);
-                    $(el.parent().parent().find('.price')).val(item.product.sale_price);
+                    $(el.parent().parent().find('.price')).val(item.product.ttc);
                     var taxes = '';
                     var tax = [];
 
@@ -135,7 +135,7 @@
                         }
                     }
 
-                    var itemTaxPrice = parseFloat((totalItemTaxRate / 100) * (item.product.sale_price * 1));
+                    var itemTaxPrice = parseFloat((totalItemTaxRate / 100) * (item.product.ttc * 1));
 
                     $(el.parent().parent().find('.itemTaxPrice')).val(itemTaxPrice.toFixed(2));
                     $(el.parent().parent().find('.itemTaxRate')).val(totalItemTaxRate.toFixed(2));
@@ -156,6 +156,8 @@
 
                     var totalItemPrice = 0;
                     var priceInput = $('.price');
+                    console.warn(priceInput);
+
                     for (var j = 0; j < priceInput.length; j++) {
                         totalItemPrice += parseFloat(priceInput[j].value);
                     }
@@ -347,13 +349,6 @@
                                         <label class="custom-control-label form-control-label" for="discount_apply">{{__('Discount Apply')}}</label>
                                     </div>
                                 </div>
-                                {{-- @if(!$customFields->isEmpty())
-                                    <div class="col-md-6">
-                                        <div class="tab-pane fade show" id="tab-2" role="tabpanel">
-                                            @include('customFields.formBuilder')
-                                        </div>
-                                    </div>
-                                @endif --}}
                             </div>
                         </div>
                     </div>
@@ -393,8 +388,8 @@
                             <tbody class="ui-sortable" data-repeater-item>
                             <tr>
                                 <td width="25%">
-                                    {{-- {{ Form::select('item', $product_services,'', array('class' => 'form-control select2 item','data-url'=>route('proposal.product'),'required'=>'required')) }} --}}
-                                    {{ Form::select('item', $product_services,'', array('class' => 'form-control select2 item','required'=>'required')) }}
+                                    {{ Form::select('item', $product_services,'', array('class' => 'form-control select2 item','data-url'=>route('proposal.product'),'required'=>'required')) }}
+                                    {{-- {{ Form::select('item', $product_services,'', array('class' => 'form-control select2 item','required'=>'required')) }} --}}
                                 </td>
                                 <td>
                                     <div class="form-group price-input">

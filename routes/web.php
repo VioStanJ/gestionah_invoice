@@ -77,6 +77,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/',[App\Http\Controllers\ProposalController::class,'index'])->name('proposal');
         Route::get('/create/{customerId}',[App\Http\Controllers\ProposalController::class,'create'])->name('proposal.create');
         Route::post('/detail/customer',[App\Http\Controllers\ProposalController::class,'customer'])->name('proposal.customer');
+        Route::post('/detail/product',[App\Http\Controllers\ProposalController::class,'product'])->name('proposal.product');
 
     });
 });
