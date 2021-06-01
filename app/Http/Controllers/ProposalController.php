@@ -24,6 +24,10 @@ class ProposalController extends Controller
 
         $customer = CustomerInformation::where('company_id', '=',$company->id)->get()->pluck('name', 'customer_code');
 
+        foreach ($proposals as $key => $value) {
+            $value->customer = CustomerInformation::where('company_id', '=',$company->id)->where('customer_code','=',$value->customer_code)->get()->first();
+        }
+
         return view('proposal.index',compact(['customer','proposals','status']));
     }
 

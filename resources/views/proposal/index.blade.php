@@ -93,11 +93,11 @@
                                 <tr class="font-style">
                                     <td class="Id">
                                         @if(\Auth::guard('customer')->check())
-                                            <a href="">{{ $proposal->proposal_code }}
+                                            <a href="">{{ $proposal->code }}
                                                 {{-- <a href="{{ route('customer.proposal.show',\Crypt::encrypt($proposal->code)) }}">{{ $proposal->proposal_code }} --}}
                                             </a>
                                         @else
-                                            <a href="">{{ $proposal->proposal_code }}
+                                            <a href="">{{ $proposal->code }}
                                                 {{-- <a href="{{ route('proposal.show',\Crypt::encrypt($proposal->code)) }}">{{ $proposal->proposal_code }} --}}
                                             </a>
                                         @endif

@@ -33,4 +33,15 @@ class Proposal extends Model
         'Close',
         //4
     ];
+
+    public function category()
+    {
+        return $this->hasOne('App\Models\category','code', 'category_code');
+    }
+
+    public function customer()
+    {
+        return $this->hasOne('App\Models\Customer','code', 'customer_code');
+    }
+
 }
