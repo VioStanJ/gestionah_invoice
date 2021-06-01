@@ -377,7 +377,7 @@
                                 <th>{{__('Items')}}</th>
                                 <th>{{__('Quantity')}}</th>
                                 <th>{{__('Price')}} </th>
-                                <th>{{__('Tax')}} (%)</th>
+                                {{-- <th>{{__('Tax')}} (%)</th> --}}
                                 <th>{{__('Discount')}}</th>
                                 <th class="text-right">{{__('Amount')}} <br>
                                     <small class="text-danger font-weight-bold">{{__('before tax & discount')}}</small>
@@ -388,8 +388,7 @@
                             <tbody class="ui-sortable" data-repeater-item>
                             <tr>
                                 <td width="25%">
-                                    {{ Form::select('item', $product_services,'', array('class' => 'form-control select2 item','data-url'=>route('proposal.product'),'required'=>'required')) }}
-                                    {{-- {{ Form::select('item', $product_services,'', array('class' => 'form-control select2 item','required'=>'required')) }} --}}
+                                    {{ Form::select('item', $product_services,null, array('class' => 'form-control select2 item','data-url'=>route('proposal.product'),'required'=>'required')) }}
                                 </td>
                                 <td>
                                     <div class="form-group price-input">
@@ -404,7 +403,7 @@
                                         <span>$</span>
                                     </div>
                                 </td>
-                                <td>
+                                {{-- <td>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <div class="taxes"></div>
@@ -413,7 +412,7 @@
                                             {{ Form::hidden('itemTaxRate','', array('class' => 'form-control itemTaxRate')) }}
                                         </div>
                                     </div>
-                                </td>
+                                </td> --}}
                                 <td>
                                     <div class="form-group price-input">
                                         {{ Form::text('discount','', array('class' => 'form-control discount','required'=>'required','placeholder'=>__('Discount'))) }}
@@ -458,16 +457,16 @@
                                 <td class="text-right totalDiscount">0.00</td>
                                 <td></td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                                 <td></td>
-                                {{-- <td><strong>{{__('Tax')}} ({{\Auth::user()->currencySymbol()}})</strong></td> --}}
+                                <td><strong>{{__('Tax')}} ({{\Auth::user()->currencySymbol()}})</strong></td>
                                 <td><strong>{{__('Tax')}} ($)</strong></td>
                                 <td class="text-right totalTax">0.00</td>
                                 <td></td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
