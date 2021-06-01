@@ -38,4 +38,24 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function unauthentificated($request, AuthentificationException $exception){
+        if($request->exceptsJson()){
+            return response()->json(['error'=>'Unauthentification'], 401);
+        }
+
+        $guard = array_get($exception->guards(), 0);
+
+        switch ($guard) {
+            case 'customer':
+                $login = '/customer/login';
+                break;
+
+            default:
+                $login = '/login';
+                break;
+        }
+
+        return redirect()->guest(route($login));
+    }
 }
