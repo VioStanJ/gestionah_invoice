@@ -42,6 +42,13 @@ class ProposalController extends Controller
         return view('proposal.create',compact('customerId','customers','category','proposal_number','product_services'));
     }
 
+    public function customer(Request $request)
+    {
+        $customer = CustomerInformation::where('customer_code', '=', $request->id)->first();
+
+        return view('proposal.customer_detail', compact('customer'));
+    }
+
     public function getProposalNumber($request,$company)
     {
         $latest = Proposal::where('company_id', '=', $company->id)->count();
