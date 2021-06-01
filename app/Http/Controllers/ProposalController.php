@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CustomerInformation;
 use App\Models\Proposal;
+use App\Models\ProposalProduct;
 use App\Utility;
 use App\Models\ProductUnit;
 use App\Models\category;
 use App\Models\Article;
+use DB;
 
 class ProposalController extends Controller
 {
@@ -47,7 +49,51 @@ class ProposalController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'customer_id' => 'required',
+            'issue_date' => 'required',
+            'category_id' => 'required',
+            'items' => 'required',
+        ]);
+
+        // dd($request->all());
+        DB::beginTransaction();
+
+        $company = \App\Utility::getCompany($request->user());
+
+        $proposal                 = new Proposal();
+        $proposal->company_id     = $company->id;
+        $proposal->code           = $this->getProposalNumber($request,$company);
+        $proposal->customer_code  = $request->customer_id;
+        $proposal->status         = 0;
+        $proposal->issue_date     = $request->issue_date??null;
+        $proposal->category_code    = $request->category_id;
+        $proposal->discount_apply = isset($request->discount_apply) ? 1 : 0;
+        $proposal->created_by     = $request->user()->id;
+
+        if(!$proposal->save()){
+            DB::rollBack();
+            return redirect()->back()->withErrors(["Fail on save Proposal :/ !"]);
+        };
+
+        $products = $request->items;
+
+        for($i = 0; $i < count($products); $i++)
+        {
+            $proposalProduct              = new ProposalProduct();
+            $proposalProduct->proposal_code = $proposal->code;
+            $proposalProduct->product_code  = $products[$i]['item'];
+            $proposalProduct->quantity    = $products[$i]['quantity'];
+            $proposalProduct->tax         = $products[$i]['tax']??0;
+            $proposalProduct->discount    = isset($products[$i]['discount']) ? $products[$i]['discount'] : 0;
+            $proposalProduct->price       = $products[$i]['price'];
+            $proposalProduct->description = $products[$i]['description'];
+            $proposalProduct->save();
+        }
+
+        DB::commit();
+
+        return redirect()->to('/proposal')->with('success', __('Proposal successfully created.'));
     }
 
     public function customer(Request $request)

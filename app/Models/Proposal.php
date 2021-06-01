@@ -11,11 +11,11 @@ class Proposal extends Model
 
     protected $fillable = [
         'company_id',
-        'proposal_id',
-        'customer_id',
+        'code',
+        'customer_code',
         'issue_date',
         'status',
-        'category_id',
+        'category_code',
         'is_convert',
         'converted_invoice_id',
         'created_by',

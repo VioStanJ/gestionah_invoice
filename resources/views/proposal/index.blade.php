@@ -93,10 +93,12 @@
                                 <tr class="font-style">
                                     <td class="Id">
                                         @if(\Auth::guard('customer')->check())
-                                            <a href="{{ route('customer.proposal.show',\Crypt::encrypt($proposal->id)) }}">{{ AUth::user()->proposalNumberFormat($proposal->proposal_id) }}
+                                            <a href="">{{ $proposal->proposal_code }}
+                                                {{-- <a href="{{ route('customer.proposal.show',\Crypt::encrypt($proposal->code)) }}">{{ $proposal->proposal_code }} --}}
                                             </a>
                                         @else
-                                            <a href="{{ route('proposal.show',\Crypt::encrypt($proposal->id)) }}">{{ AUth::user()->proposalNumberFormat($proposal->proposal_id) }}
+                                            <a href="">{{ $proposal->proposal_code }}
+                                                {{-- <a href="{{ route('proposal.show',\Crypt::encrypt($proposal->code)) }}">{{ $proposal->proposal_code }} --}}
                                             </a>
                                         @endif
                                     </td>
@@ -104,18 +106,19 @@
                                         <td> {{!empty($proposal->customer)? $proposal->customer->name:'' }} </td>
                                     @endif
                                     <td>{{ !empty($proposal->category)?$proposal->category->name:''}}</td>
-                                    <td>{{ Auth::user()->dateFormat($proposal->issue_date) }}</td>
+                                    <td>{{ $proposal->issue_date }}</td>
+                                    {{-- <td>{{ Auth::user()->dateFormat($proposal->issue_date) }}</td> --}}
                                     <td>
                                         @if($proposal->status == 0)
-                                            <span class="badge badge-pill badge-primary">{{ __(\App\Proposal::$statues[$proposal->status]) }}</span>
+                                            <span class="badge badge-pill badge-primary">{{ __(\App\Models\Proposal::$statues[$proposal->status]) }}</span>
                                         @elseif($proposal->status == 1)
-                                            <span class="badge badge-pill badge-info">{{ __(\App\Proposal::$statues[$proposal->status]) }}</span>
+                                            <span class="badge badge-pill badge-info">{{ __(\App\Models\Proposal::$statues[$proposal->status]) }}</span>
                                         @elseif($proposal->status == 2)
-                                            <span class="badge badge-pill badge-success">{{ __(\App\Proposal::$statues[$proposal->status]) }}</span>
+                                            <span class="badge badge-pill badge-success">{{ __(\App\Models\Proposal::$statues[$proposal->status]) }}</span>
                                         @elseif($proposal->status == 3)
-                                            <span class="badge badge-pill badge-warning">{{ __(\App\Proposal::$statues[$proposal->status]) }}</span>
+                                            <span class="badge badge-pill badge-warning">{{ __(\App\Models\Proposal::$statues[$proposal->status]) }}</span>
                                         @elseif($proposal->status == 4)
-                                            <span class="badge badge-pill badge-danger">{{ __(\App\Proposal::$statues[$proposal->status]) }}</span>
+                                            <span class="badge badge-pill badge-danger">{{ __(\App\Models\Proposal::$statues[$proposal->status]) }}</span>
                                         @endif
                                     </td>
                                     @if(Gate::check('edit proposal') || Gate::check('delete proposal') || Gate::check('show proposal'))
