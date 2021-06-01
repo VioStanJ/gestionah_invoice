@@ -50,6 +50,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="/proposal" class="nav-link {{ (Request::segment(1) == 'proposal')?'active':''}}">
+                            <i class="fas fa-receipt"></i>{{__('Proposal')}}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="/customer" class="nav-link {{ (Request::segment(1) == 'customer')?'active':''}}">
                             <i class="fas fa-user-ninja"></i>{{__('Customer')}}
                         </a>

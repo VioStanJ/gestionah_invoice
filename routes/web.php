@@ -69,6 +69,12 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/update/{code}',[App\Http\Controllers\CustomerController::class,'update'])->name('customer.update');
         Route::delete('/delete/{code}',[App\Http\Controllers\CustomerController::class,'destroy'])->name('customer.destroy');
         Route::get('/show/{code}',[App\Http\Controllers\CustomerController::class,'show'])->name('customer.show');
+    });
+
+    // Proposals
+    Route::prefix('proposal')->group(function()
+    {
+        Route::get('/',[App\Http\Controllers\ProposalController::class,'index'])->name('customer.get.proposal');
 
     });
 });
@@ -78,8 +84,14 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth:customer,customer', 'verified'])->group(function () {
     Route::get('/dashboard',[App\Http\Controllers\Customer\HomeController::class,'index'])->name('customer.home');
-    Route::post('/customer/logout',[App\Http\Controllers\Customer\HomeController::class,'logout'])->name('customer.logout');
-    Route::get('/customer/proposal',[App\Http\Controllers\Customer\HomeController::class,'index'])->name('customer.proposal');
-    Route::get('/customer/invoice',[App\Http\Controllers\Customer\HomeController::class,'index'])->name('customer.invoice');
+
+    // Customer Route
+    Route::prefix('customer')->group(function()
+    {
+        Route::post('/logout',[App\Http\Controllers\Customer\HomeController::class,'logout'])->name('customer.logout');
+        Route::get('/proposal',[App\Http\Controllers\Customer\HomeController::class,'index'])->name('customer.proposal');
+        Route::get('/invoice',[App\Http\Controllers\Customer\HomeController::class,'index'])->name('customer.invoice');
+    });
+
 });
 
