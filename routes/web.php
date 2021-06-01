@@ -74,7 +74,8 @@ Route::middleware(['auth'])->group(function () {
     // Proposals
     Route::prefix('proposal')->group(function()
     {
-        Route::get('/',[App\Http\Controllers\ProposalController::class,'index'])->name('customer.get.proposal');
+        Route::get('/',[App\Http\Controllers\ProposalController::class,'index'])->name('proposal');
+        Route::get('/create',[App\Http\Controllers\ProposalController::class,'index'])->name('proposal.create');
 
     });
 });
