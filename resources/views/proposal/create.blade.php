@@ -308,8 +308,7 @@
                             <div class="form-group" id="customer-box">
                                 <div class="input-group">
                                     {{ Form::label('customer_id', __('Customer'),['class'=>'form-control-label']) }}
-                                    {{-- {{ Form::select('customer_id', $customers,$customerId, array('class' => 'form-control select2','id'=>'customer','data-url'=>route('proposal.customer'),'required'=>'required')) }} --}}
-                                    {{ Form::select('customer_id', $customers,$customerId, array('class' => 'form-control select2','id'=>'customer','required'=>'required')) }}
+                                    {{ Form::select('customer_id', $customers,$customerId, array('class' => 'form-control select2','id'=>'customer','data-url'=>route('proposal.customer'),'required'=>'required')) }}
                                 </div>
                             </div>
                             <div id="customer_detail" class="d-none">
