@@ -79,6 +79,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/detail/customer',[App\Http\Controllers\ProposalController::class,'customer'])->name('proposal.customer');
         Route::post('/detail/product',[App\Http\Controllers\ProposalController::class,'product'])->name('proposal.product');
         Route::post('/store',[App\Http\Controllers\ProposalController::class,'store'])->name('proposal.stores');
+        Route::get('/show/{code}',[App\Http\Controllers\ProposalController::class,'show'])->name('proposal.show');
+        Route::get('/edit/{code}',[App\Http\Controllers\ProposalController::class,'show'])->name('proposal.edit');
+        Route::get('/sent/{code}',[App\Http\Controllers\ProposalController::class,'show'])->name('proposal.sent');
+        Route::get('/status/change/{code}',[App\Http\Controllers\ProposalController::class,'show'])->name('proposal.status.change');
 
     });
 });

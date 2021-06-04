@@ -11,6 +11,7 @@ use App\Models\ProductUnit;
 use App\Models\category;
 use App\Models\Article;
 use DB;
+use Illuminate\Support\Facades\Crypt;
 
 class ProposalController extends Controller
 {
@@ -139,5 +140,21 @@ class ProposalController extends Controller
         }
 
         return "PROP" .$company->id.'-'. sprintf("%05d", $id);
+    }
+
+    public function show(Request $request,$code)
+    {
+        $code     = Crypt::decrypt($code);
+        $proposal = Proposal::where('code','=',$code)->get()->first();
+
+        $company = \App\Utility::getCompany($request->user());
+
+        $customer = CustomerInformation::where('company_id', '=',$company->id)->where('customer_code','=',$proposal->customer_code)->get()->first();
+
+        $items = $proposal->items;
+
+        $status   = Proposal::$statues;
+
+        return view('proposal.view',compact(['proposal','customer','items','status']));
     }
 }

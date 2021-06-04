@@ -82,9 +82,7 @@
                                 <th> {{__('Category')}}</th>
                                 <th> {{__('Issue Date')}}</th>
                                 <th> {{__('Status')}}</th>
-                                @if(Gate::check('edit proposal') || Gate::check('delete proposal') || Gate::check('show proposal'))
-                                    <th> {{__('Action')}}</th>
-                                @endif
+                                <th> {{__('Action')}}</th>
                             </tr>
                             </thead>
 
@@ -121,8 +119,10 @@
                                             <span class="badge badge-pill badge-danger">{{ __(\App\Models\Proposal::$statues[$proposal->status]) }}</span>
                                         @endif
                                     </td>
-                                    @if(Gate::check('edit proposal') || Gate::check('delete proposal') || Gate::check('show proposal'))
                                         <td class="Action">
+                                            {{-- <a href="{{ route('invoice.show',\Crypt::encrypt($proposal->code)) }}" class="edit-icon bg-warning" data-toggle="tooltip" data-original-title="{{__('Already convert to Invoice')}}" data-toggle="tooltip" data-original-title="{{__('Delete')}}">
+                                                <i class="fas fa-file"></i>
+                                            </a> --}}
                                             @if($proposal->is_convert==0)
                                                 @can('convert invoice')
                                                     <a href="#" class="edit-icon bg-warning" data-toggle="tooltip" data-original-title="{{__('Convert to Invoice')}}" data-toggle="tooltip" data-original-title="{{__('Delete')}}" data-confirm="{{__('You want to confirm convert to invoice. Press Yes to continue or Cancel to go back')}}" data-confirm-yes="document.getElementById('proposal-form-{{$proposal->id}}').submit();">
@@ -132,11 +132,7 @@
                                                     </a>
                                                 @endcan
                                             @else
-                                                @can('convert invoice')
-                                                    <a href="{{ route('invoice.show',\Crypt::encrypt($proposal->converted_invoice_id)) }}" class="edit-icon bg-warning" data-toggle="tooltip" data-original-title="{{__('Already convert to Invoice')}}" data-toggle="tooltip" data-original-title="{{__('Delete')}}">
-                                                        <i class="fas fa-file"></i>
-                                                    </a>
-                                                @endcan
+
                                             @endif
                                             @can('duplicate proposal')
                                                 <a href="#" class="edit-icon bg-success" data-toggle="tooltip" data-original-title="{{__('Duplicate')}}" data-toggle="tooltip" data-original-title="{{__('Delete')}}" data-confirm="{{__('You want to confirm duplicate this invoice. Press Yes to continue or Cancel to go back')}}" data-confirm-yes="document.getElementById('duplicate-form-{{$proposal->id}}').submit();">
@@ -145,17 +141,15 @@
                                                     {!! Form::close() !!}
                                                 </a>
                                             @endcan
-                                            @can('show proposal')
-                                                @if(\Auth::guard('customer')->check())
-                                                    <a href="{{ route('customer.proposal.show',\Crypt::encrypt($proposal->id)) }}" class="edit-icon bg-info" data-toggle="tooltip" data-original-title="{{__('Detail')}}">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                @else
-                                                    <a href="{{ route('proposal.show',\Crypt::encrypt($proposal->id)) }}" class="edit-icon bg-info" data-toggle="tooltip" data-original-title="{{__('Detail')}}">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                @endif
-                                            @endcan
+                                            @if(\Auth::guard('customer')->check())
+                                                <a href="{{ route('customer.proposal.show',\Crypt::encrypt($proposal->code)) }}" class="edit-icon bg-info" data-toggle="tooltip" data-original-title="{{__('Detail')}}">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            @else
+                                                <a href="{{ route('proposal.show',\Crypt::encrypt($proposal->code)) }}" class="edit-icon bg-info" data-toggle="tooltip" data-original-title="{{__('Detail')}}">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            @endif
                                             @can('edit proposal')
                                                 <a href="{{ route('proposal.edit',\Crypt::encrypt($proposal->id)) }}" class="edit-icon" data-toggle="tooltip" data-original-title="{{__('Edit')}}">
                                                     <i class="fas fa-pencil-alt"></i>
@@ -170,7 +164,6 @@
                                                 {!! Form::close() !!}
                                             @endcan
                                         </td>
-                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>

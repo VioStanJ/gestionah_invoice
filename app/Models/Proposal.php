@@ -44,4 +44,48 @@ class Proposal extends Model
         return $this->hasOne('App\Models\Customer','code', 'customer_code');
     }
 
+    public function items()
+    {
+        return $this->hasMany('App\Models\ProposalProduct', 'proposal_code', 'code');
+    }
+
+    public function getSubTotal()
+    {
+        $subTotal = 0;
+        foreach($this->items as $product)
+        {
+            $subTotal += ($product->price * $product->quantity);
+        }
+
+        return $subTotal;
+    }
+
+    public function getTotal()
+    {
+        return ($this->getSubTotal() + $this->getTotalTax()) - $this->getTotalDiscount();
+    }
+
+    public function getTotalDiscount()
+    {
+        $totalDiscount = 0;
+        foreach($this->items as $product)
+        {
+            $totalDiscount += $product->discount;
+        }
+
+        return $totalDiscount;
+    }
+
+    public function getTotalTax()
+    {
+        $totalTax = 0;
+        foreach($this->items as $product)
+        {
+            $taxes = \App\Utility::totalTaxRate($product->tax);
+
+            $totalTax += ($taxes / 100) * ($product->price * $product->quantity);
+        }
+
+        return $totalTax;
+    }
 }

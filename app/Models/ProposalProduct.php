@@ -18,4 +18,9 @@ class ProposalProduct extends Model
         'total',
         'decription'
     ];
+
+    public function product()
+    {
+        return $this->hasOne('App\Models\Article', 'code', 'product_code');
+    }
 }
